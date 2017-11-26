@@ -382,16 +382,17 @@ void WiFiManager::handleRoot() {
   }
 
   String page = FPSTR(HTTP_HEAD);
-  page.replace("{v}", "Options");
+  page.replace("{v}", "Config Sensor");
   page += FPSTR(HTTP_SCRIPT);
   page += FPSTR(HTTP_STYLE);
   page += _customHeadElement;
   page += FPSTR(HTTP_HEAD_END);
-  page += "<h1>";
-  page += _apName;
-  page += "</h1>";
-  page += F("<h3>WiFiManager</h3>");
+  page += "<h1>Setup Wizard</h1>";
+  // page += _apName;
+  // page += "</h1>";
+  page += F("<h3 style=\"margin-bottom: 35px;\">Congrats!  Your sensor is ready to be activated.</h3>");
   page += FPSTR(HTTP_PORTAL_OPTIONS);
+  page += F("<p style=\"color: #999;font-size: 90%;text-align: center;\">Questions? Contact us at 814.623.8114 or <a href=\"mailto:contact@sacinc.net\">contact@sacinc.net</a></p>");
   page += FPSTR(HTTP_END);
 
   server->sendHeader("Content-Length", String(page.length()));
@@ -403,12 +404,13 @@ void WiFiManager::handleRoot() {
 void WiFiManager::handleWifi(boolean scan) {
 
   String page = FPSTR(HTTP_HEAD);
-  page.replace("{v}", "Config ESP");
+  page.replace("{v}", "Config Sensor");
   page += FPSTR(HTTP_SCRIPT);
   page += FPSTR(HTTP_STYLE);
   page += _customHeadElement;
   page += FPSTR(HTTP_HEAD_END);
-
+  page += "<h1>Setup Wireless Network</h1>";
+  page += F("<p>Select your wireless network and enter a password if required.</p>");
   if (scan) {
     int n = WiFi.scanNetworks();
     DEBUG_WM(F("Scan done"));
